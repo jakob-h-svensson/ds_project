@@ -12,19 +12,19 @@ Jämförelse av två urvalsindex som jag själv har skapat, ett svenskt och ett 
 
 **Struktur**
 
-*streamlit_app.py* - Huvudfil för applikationen. Här styrs applikationens struktur och flöde.
+´streamlit_app.py´ - Huvudfil för applikationen. Här styrs applikationens struktur och flöde.
 
-*utils.py* - Här samlas den huvudsakliga funktionaliteten för hämtning och bearbetning av data.
+´utils.py´ - Här samlas den huvudsakliga funktionaliteten för hämtning och bearbetning av data.
 
-*info_page.py* - Används för att presentera information om projektet och ge användaren en överblick.
+´info_page.py´ - Används för att presentera information om projektet och ge användaren en överblick.
 
-*visualisation_page.py* - Filen för att visualisera data.
+´visualisation_page.py´ - Filen för att visualisera data.
 
-*data_page.py* - Denna fil presenterar projektet och dess uppbyggnad i en Streamlit-sida.
+´data_page.py´ - Denna fil presenterar projektet och dess uppbyggnad i en Streamlit-sida.
 
-*data* - Denna mapp innehåller events.csv som används för presentation av händelser.
+´data´ - Denna mapp innehåller events.csv som används för presentation av händelser.
 
-*data/database* - Denna mapp innehåller tickers.sqlite, databasen där yfinance-datan sparas.
+´data/database´ - Denna mapp innehåller tickers.sqlite, databasen där yfinance-datan sparas.
 
 **Konfiguration**  
 Se *requirements.txt* för applikationens krav och beroenden. Rekommenderade visnings-settings i Streamlit är "Light"
