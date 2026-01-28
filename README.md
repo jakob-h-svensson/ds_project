@@ -18,13 +18,13 @@ Jämförelse av två urvalsindex som jag själv har skapat, ett svenskt och ett 
 
 `info_page.py` - Används för att presentera information om projektet och ge användaren en överblick.
 
-`visualisation_page.py` - Filen för att visualisera data.
+`visualisation_page.py` - Används för presentation av visualiseringar och interaktion med data.
 
-`data_page.py` - Denna fil presenterar projektet och dess uppbyggnad i en Streamlit-sida.
+`data_page.py` - Används för presentation av data och dess uppbyggnad.
 
-`data` - Denna mapp innehåller events.csv som används för presentation av händelser.
+`data` - Innehåller events.csv som används för presentation av händelser.
 
-`data/database` - Denna mapp innehåller tickers.sqlite, databasen där yfinance-datan sparas.
+`data/database` - Innehåller tickers.sqlite, databasen där yfinance-datan sparas.
 
 **Konfiguration**  
 Se *requirements.txt* för applikationens krav och beroenden. Rekommenderade visnings-settings i Streamlit är "Light"
