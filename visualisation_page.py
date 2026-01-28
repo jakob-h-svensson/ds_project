@@ -63,12 +63,12 @@ with col1:
     df_norm_index_selected = df_norm_index[(df_norm_index['Date'] <= selected_ts) & (df_norm_index['Date'] >= "2015-01-01")]
     # Date selection end ----------------- #
     
-    tab_2_1_index, tab_2_2_volatility, tab_2_2_1_volume, tab_2_3_stocks = st.tabs(["Indexutveckling", "Volatilitet", "Volymutveckling", "Aktier"])
+    tab_2_1_index, tab_2_2_1_volume, tab_2_2_volatility, tab_2_3_stocks = st.tabs(["Indexutveckling", "Volymutveckling", "Volatilitet", "Aktier"])
     with tab_2_1_index:
         with st.expander("Indexjämförelse, information", expanded=False):
             st.markdown("""
             Här kan du se en jämförelse mellan de utvalda aktierna från svenska och amerikanska aktiemarknaden. 
-            Grafen visar dels aktiernas **indexutveckling** under perioden 2015-2025 (linjerna), samt **händelser** som har varit relevanta under denna period (streck och stjärnor). Indexberäkningen bygger på normerade värden, d.v.s. alla aktiers ursprungliga värden normaliseras mot 2015. En uppgång motsvarar en ökning av indexvärdet, en nerågång motsvarar en minkande indexvärdet. \n
+            Grafen visar dels aktiernas **`indexutveckling`** under perioden 2015-2025 (linjerna), samt händelser som har varit relevanta under samma period (streck och stjärnor). Indexberäkningen bygger på **`normerade värden`**, d.v.s. alla aktiers ursprungliga värden normaliseras mot 2015. En uppgång motsvarar en ökning av indexvärdet, en nedgång motsvarar en minkande indexvärdet. \n
             Använd slidern ovan för att navigera mellan olika datum i tidslinjen, eller klicka dig fram 5, 10 eller 30 dagar med knapparna.
             """)
             
@@ -146,11 +146,11 @@ with col1:
     
     with tab_2_2_1_volume:
         df_norm_index_selected = df_norm_index_selected.copy()
-        with st.expander("Volymutveckling", expanded=True):
+        with st.expander("Volymutveckling, information", expanded=True):
             st.markdown("""
                 Här visas en jämförelse mellan utvalda aktier på den svenska och amerikanska aktiemarknaden.
 
-                Staplarna visar **handelsvolymen** mellan 2015 och 2025 för vald marknad, det vill säga hur många aktier som har köpts och sålts under perioden. Hög volym betyder stort intresse och mycket handel, medan låg volym tyder på att marknaden är mer avvaktande. Linjen visar vald marknads **index**, vilket gör det lättare att se hur volymen förhåller sig till marknadens utveckling.
+                Staplarna visar **`handelsvolymen`** mellan 2015 och 2025 för vald marknad, det vill säga hur många aktier som har köpts och sålts under perioden. Hög volym betyder stort intresse och mycket handel, medan låg volym tyder på att marknaden är mer avvaktande. Linjen visar vald marknads **`index`**, vilket gör det lättare att se hur volymen förhåller sig till marknadens utveckling.
 
                 Använd slidern ovan för att bläddra mellan datum, eller knapparna för att hoppa 5, 10 eller 30 dagar.  
                 Välj även marknad nedan.
@@ -200,10 +200,10 @@ with col1:
         with st.expander("Volatilitet, information", expanded=False):
             st.markdown("""
             Här kan du se en jämförelse mellan de utvalda aktierna från svenska och amerikanska aktiemarknaden. 
-            Grafen visar marknadernas **volatilitet** under perioden 2015-2025. Volatilitet mäter hur mycket priset på en aktie svänger upp och ner över tid; \n
+            Grafen visar marknadernas **`volatilitet`** under perioden 2015-2025. Volatilitet mäter hur mycket priset svänger upp och ner över tid; \n
             * Hög volatilitet betyder stora, snabba förändringar (mer risk och potential) \n
             * Låg volatilitet indikerar stabila, små rörelser (mindre risk). \n
-            Detta mäts ofta med standardavvikelse från medelvärdet för en given period, i detta fall beräknas måttet som 30-dagars historisk standardavvikelse. \n
+            Detta mäts ofta med **`standardavvikelse`** från medelvärdet för en given period, i detta fall beräknas måttet som 30-dagars historisk standardavvikelse. \n
             Använd slidern ovan för att navigera mellan olika datum i tidslinjen, eller klicka dig fram 5, 10 eller 30 dagar med knapparna.
             """)
         if selected_ts <= pd.Timestamp("2015-02-17"):
@@ -228,24 +228,23 @@ with col1:
         st.plotly_chart(vol_fig, use_container_width=True)
 
     with tab_2_3_stocks:
-        with st.expander("Bolagsanalys", expanded=True):
+        with st.expander("Bolagsanalys, information", expanded=True):
             st.markdown("""
-                I den här delen kan du jämföra **ett enskilt bolag** med marknaden som helhet.
+                I den här delen kan du jämföra **ett enskilt bolag** med de utvalda marknaderna som helhet.
 
-                Börja med att välja vilken marknad du vill analysera – Sverige eller USA.  
-                Därefter väljer du ett bolag från listan.
+                Börja med att välja vilken marknad du vill analysera – Sverige eller USA. Därefter väljer du ett bolag från listan.
+                
 
                 Grafen som visas jämför:
                 - **Bolagets kursutveckling** (grön linje)
                 - **Marknadens index** (grå streckad linje)
 
-                Både bolaget och indexet är **normerade**, vilket betyder att de startar på samma nivå.  
-                Det gör det enkelt att se om bolaget har gått bättre eller sämre än marknaden över tid, oberoende av prisnivå.
+                Både bolaget och indexet är **`normerade`**, vilket betyder att de startar på samma nivå. Det gör det enkelt att se om bolaget har gått bättre eller sämre än marknaden över tid, oberoende av prisnivå.
 
-                Om bolagets linje ligger över index har bolaget utvecklats starkare än marknaden.  
-                Ligger den under har bolaget gått svagare.
+                Om bolagets linje ligger över index har bolaget utvecklats starkare än marknaden. Ligger den under har bolaget gått svagare. Använd denna visualsiering för att snabbt få en känsla för bolagets relativa prestation.
 
-                Använd detta för att snabbt få en känsla för bolagets relativa prestation.
+                > :red[Observera att det kan förekomma aktier som inte varit börsnoterade under hela den analyserade perioden. Dessa visas först från och med det datum då de noterades!]
+
                 """)
 
             # Select market
