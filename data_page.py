@@ -88,7 +88,6 @@ with st.expander("### 0. Requirements", expanded=False):
     numpy \n
     yfinance \n
     plotly \n
-    xgboost \n
     SQLAlchemy""")
 
 #-------------------------------------------------------------------------
