@@ -6,13 +6,11 @@ Ekonomiresan
 
 Att med hjälp av Python undersöka hur börsen reagerar på stora geopolitiska och makroekonomiska händelser. Samt att visualisera detta i en interaktiv tidsresa.
 
-**Metodik**
+**Metodik/Data**
 
-Jämförelse av två urvalsindex som jag själv har skapat, ett svenskt och ett amerikanskt, över perioden 2015-2025. Datan hämtas via yfinance, hanteras och bearbetas med hjälp av Pandas och lagras i en SQLite databas. Därefter sker visualiseringar med hjälp av Plotly och allt paketeras i en Streamlit applikation.
+Jämförelse av två urvalsindex som jag själv har skapat, ett svenskt och ett amerikanskt, över perioden 2015-2025. Datan som hämtas in är olika aktiedata (Stängningspris, Öppningspris, Högsta pris, Lägsta pris, Volym per datum och aktie) för perioden 2014-2025. Datan hämtas via yfinance och lagras i en SQLite databas. Utöver detta har jag även tagit fram data om stora geopolitiska och makroekonomiska händelser från en CSV-fil.
 
-**Data**
 
-Datan som hämtas in är olika aktiedata (Stängningspris, Öppningspris, Högsta pris, Lägsta pris, Volym per datum och aktie) för perioden 2014-2025. Datan hämtas via yfinance och lagras i en SQLite databas. Utöver detta har jag även tagit fram data om stora geopolitiska och makroekonomiska händelser från en CSV-fil.
 
 **Struktur**
 
