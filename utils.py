@@ -4,12 +4,8 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import datetime as dt
-from xgboost import XGBClassifier
-import os
-import json
 from datetime import datetime, date, timedelta
 from sqlalchemy import create_engine
-import inspect
 
 # Settings and data ---------------------------
 

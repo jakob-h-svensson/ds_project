@@ -30,6 +30,7 @@ st.title("Tidsresan")
 
 
 # Date selection start --------------- #
+# Starting date is 18/2 2015 as some calculations require 30 trading days of data
 if "selected_date" not in st.session_state:
     st.session_state.selected_date = dt.date(2015, 2, 18)
 col1, col2, col3 = st.columns(3)
@@ -220,7 +221,7 @@ with col1:
         with col_vol2:
             st.metric("USA Volatilitet (Risk)", f"{curr_nasdaq_vol:.1f}%", delta_color="inverse")
 
-        # Area-chart to show historical fear
+        # Area-chart to show historical volatility
         vol_fig = make_subplots(specs=[[{"secondary_y": True}]])
         vol_fig.add_trace(go.Scatter(x=df_norm_index_selected[df_norm_index_selected['Market'] == "SWE"]['Date'], y=df_norm_index_selected[df_norm_index_selected['Market'] == "SWE"]['Volatility'], fill='tozeroy', name='Sverige', line_color='#005293'))
         vol_fig.add_trace(go.Scatter(x=df_norm_index_selected[df_norm_index_selected['Market'] == "USA"]['Date'], y=df_norm_index_selected[df_norm_index_selected['Market'] == "USA"]['Volatility'], fill='tozeroy', name='USA', line_color='#EF3340', opacity=0.5))
