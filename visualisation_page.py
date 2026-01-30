@@ -222,6 +222,7 @@ with col1:
             st.metric("USA Volatilitet (Risk)", f"{curr_nasdaq_vol:.1f}%", delta_color="inverse")
 
         # Show volatility - fill to zero to make an area chart
+        vol_fig = make_subplots(specs=[[{"secondary_y": True}]])
         vol_fig.add_trace(go.Scatter(x=df_norm_index_selected[df_norm_index_selected['Market'] == "SWE"]['Date'], y=df_norm_index_selected[df_norm_index_selected['Market'] == "SWE"]['Volatility'], fill='tozeroy', name='Sverige', line_color='#005293'))
         vol_fig.add_trace(go.Scatter(x=df_norm_index_selected[df_norm_index_selected['Market'] == "USA"]['Date'], y=df_norm_index_selected[df_norm_index_selected['Market'] == "USA"]['Volatility'], fill='tozeroy', name='USA', line_color='#EF3340', opacity=0.5))
         vol_fig.update_layout(height=300, title="Historisk volatilitet", margin=dict(t=30, b=0))
