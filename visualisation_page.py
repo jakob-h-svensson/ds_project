@@ -129,7 +129,7 @@ with col1:
         if event_dates:
             fig.add_trace(go.Scatter(
                 x=event_dates,
-                y=[marker_y_pos] * len(event_dates), 
+                y=[marker_y_pos] * len(event_dates), # y must have the same number of values as x. Event data is only dates, so we need to add the same y value for each event.
                 mode='markers', 
                 name='Händelser',
                 marker=dict(
@@ -164,9 +164,10 @@ with col1:
 
         combined_frame = combined_frame[(combined_frame['Date'] <= selected_ts) & (combined_frame['Date'] >= "2015-01-01")]
         
+        # Creating a secondary y axis (index)
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-        # Staplar för volym
+        # Volume-bars
         fig.add_trace(
             go.Bar(
                 x=combined_frame['Date'],
@@ -177,10 +178,10 @@ with col1:
             secondary_y=False
         )
 
-        # Linje för index
+        # Index-lines
         fig.add_trace(
             go.Scatter(
-                x=combined_frame['Date'],   # Viktigt! annars fel
+                x=combined_frame['Date'],
                 y=combined_frame['norm_close'],
                 name='Index',
                 mode='lines',
@@ -188,7 +189,6 @@ with col1:
             secondary_y=True
         )
 
-        # Axis-titlar
         fig.update_xaxes(title_text="Datum")
         fig.update_yaxes(title_text="Total Volym", secondary_y=False)
         fig.update_yaxes(title_text="Indexvärde", secondary_y=True)
@@ -221,8 +221,7 @@ with col1:
         with col_vol2:
             st.metric("USA Volatilitet (Risk)", f"{curr_nasdaq_vol:.1f}%", delta_color="inverse")
 
-        # Area-chart to show historical volatility
-        vol_fig = make_subplots(specs=[[{"secondary_y": True}]])
+        # Show volatility - fill to zero to make an area chart
         vol_fig.add_trace(go.Scatter(x=df_norm_index_selected[df_norm_index_selected['Market'] == "SWE"]['Date'], y=df_norm_index_selected[df_norm_index_selected['Market'] == "SWE"]['Volatility'], fill='tozeroy', name='Sverige', line_color='#005293'))
         vol_fig.add_trace(go.Scatter(x=df_norm_index_selected[df_norm_index_selected['Market'] == "USA"]['Date'], y=df_norm_index_selected[df_norm_index_selected['Market'] == "USA"]['Volatility'], fill='tozeroy', name='USA', line_color='#EF3340', opacity=0.5))
         vol_fig.update_layout(height=300, title="Historisk volatilitet", margin=dict(t=30, b=0))
@@ -251,6 +250,8 @@ with col1:
             # Select market
             market_choice = st.radio("Välj marknad att analysera:", ["Sverige (OMXS30-urval)", "USA (Nasdaq-urval)"], horizontal=True)
 
+            # Use swedish stocks if sweden is selected (dict is used in selectbox below)
+            # Also country specific "raw_data" is picked up from this.
             if market_choice == "Sverige (OMXS30-urval)":
                 stock_dict = swe_stocks
                 raw_data = df_all_tickers[df_all_tickers['Market'] == "SWE"]
@@ -279,7 +280,7 @@ with col1:
             if not stock_df.empty:
                 stock_df['Normalized'] = stock_df['Close'] / stock_df['Close'].iloc[0]
                 
-                # Compare with index (which is already normalized in your 'index_value')
+                # Compare with index (which is already normalized in 'index_value')
                 comp_fig = go.Figure()
                 
                 # Stock line
@@ -314,6 +315,7 @@ with col2:
     swe_row = get_nearest_trading_day(df_all_swe, selected_ts)
     usa_row = get_nearest_trading_day(df_all_usa, selected_ts)
 
+    # Dropping NaN
     swe_row = swe_row.dropna()
     usa_row = usa_row.dropna()
 
